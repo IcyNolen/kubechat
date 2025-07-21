@@ -1,0 +1,3 @@
+com/kubechat/notification/NotificationApplication.class
+com/kubechat/notification/WebSocketConfig.class
+com/kubechat/notification/NotificationHandler.class

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubechat-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kubechat
+  template:
+    metadata:
+      labels:
+        app: kubechat
+    spec:
+      containers:
+        - name: kubechat-app
+          image: sunnybharti/kubechat-app:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubechat-service
+spec:
+  selector:
+    app: kubechat
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 32649
+  type: NodePort
+
